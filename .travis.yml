@@ -1,2 +1,7 @@
 script:
   - echo "testing build"
+import:
+  - feed/.travis.yml
+  - reverse/.travis.yml
+  - udagram-frontend/.travis.yml
+  - user/.travis.yml
