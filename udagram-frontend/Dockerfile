@@ -1,5 +1,5 @@
 # Use NodeJS base image
-FROM beevelop/ionic
+FROM beevelop/ionic AS ionic
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 COPY udagram-frontend/package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
 # Copy app source
 COPY . .
