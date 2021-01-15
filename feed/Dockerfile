@@ -2,11 +2,11 @@
 FROM node:12
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/feed
 
 # Install app dependencies by copying
 # package.json and package-lock.json
-COPY package*.json ./
+COPY feed/package*.json ./
 
 # Install dependencies
 RUN npm install
