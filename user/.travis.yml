@@ -1,6 +1,6 @@
 script:
   - docker --version # print the version for logging
-  - docker build -t udagram-user .
+  - docker build -t udagram-user . -f user/Dockerfile
   - docker tag udagram-user khalidhisham10/udagram-user:latest
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
