@@ -1,0 +1,7 @@
+script:
+  - docker --version # print the version for logging
+  - docker build -t udagram-front .
+  - docker tag udagram-front khalidhisham10/udagram-front:latest
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push khalidhisham10/udagram-front:latest
