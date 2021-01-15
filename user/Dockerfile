@@ -6,7 +6,7 @@ WORKDIR /usr/src/app/user
 
 # Install app dependencies by copying
 # package.json and package-lock.json
-COPY user/package*.json ./
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install

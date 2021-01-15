@@ -6,7 +6,7 @@ WORKDIR /usr/src/app/feed
 
 # Install app dependencies by copying
 # package.json and package-lock.json
-COPY feed/package*.json ./
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
