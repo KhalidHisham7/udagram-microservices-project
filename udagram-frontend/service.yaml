@@ -12,3 +12,4 @@ spec:
     targetPort: 80
   selector:
     service: udagram-front
+  type: LoadBalancer 

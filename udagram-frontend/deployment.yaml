@@ -19,10 +19,10 @@ spec:
         image: khalidhisham10/udagram-front
         resources:
           requests:
-            memory: "400Mi"
+            memory: "64Mi"
             cpu: "250m"
           limits:
-            memory: "400Mi"
-            cpu: "250m"
+            memory: "1024Mi"
+            cpu: "500m"
         ports:
         - containerPort: 80
