@@ -1,0 +1,600 @@
+$ git clone --depth=50 --branch=master https://github.com/KhalidHisham7/udagram-microservices-project.git KhalidHisham7/udagram-microservices-project
+0.01s
+Setting environment variables from repository settings
+$ export DOCKER_USERNAME=[secure]
+$ export DOCKER_PASSWORD=[secure]
+rvm
+0.70s$ rvm use default
+ruby.versions
+$ ruby --version
+No Gemfile found, skipping bundle install
+0.23s$ docker --version
+Docker version 18.06.0-ce, build 0ffa825
+The command "docker --version" exited with 0.
+41.63s$ docker build ./user -t udagram-user -f user/Dockerfile
+Sending build context to Docker daemon   6.16MB
+Step 1/7 : FROM node:12
+12: Pulling from library/node
+2587235a7635: Pulling fs layer
+953fe5c215cb: Pulling fs layer
+d4d3f270c7de: Pulling fs layer
+ed36dafe30e3: Pulling fs layer
+00e912dd434d: Pulling fs layer
+dd25ee3ea38e: Pulling fs layer
+2a9b744d457d: Pulling fs layer
+cc5d09c61fdf: Pulling fs layer
+2f2248a9e475: Pulling fs layer
+ed36dafe30e3: Waiting
+00e912dd434d: Waiting
+dd25ee3ea38e: Waiting
+2a9b744d457d: Waiting
+cc5d09c61fdf: Waiting
+2f2248a9e475: Waiting
+d4d3f270c7de: Verifying Checksum
+d4d3f270c7de: Download complete
+953fe5c215cb: Verifying Checksum
+953fe5c215cb: Download complete
+2587235a7635: Verifying Checksum
+2587235a7635: Download complete
+dd25ee3ea38e: Verifying Checksum
+dd25ee3ea38e: Download complete
+ed36dafe30e3: Verifying Checksum
+ed36dafe30e3: Download complete
+cc5d09c61fdf: Verifying Checksum
+cc5d09c61fdf: Download complete
+2a9b744d457d: Verifying Checksum
+2a9b744d457d: Download complete
+2f2248a9e475: Verifying Checksum
+2f2248a9e475: Download complete
+00e912dd434d: Verifying Checksum
+00e912dd434d: Download complete
+2587235a7635: Pull complete
+953fe5c215cb: Pull complete
+d4d3f270c7de: Pull complete
+ed36dafe30e3: Pull complete
+00e912dd434d: Pull complete
+dd25ee3ea38e: Pull complete
+2a9b744d457d: Pull complete
+cc5d09c61fdf: Pull complete
+2f2248a9e475: Pull complete
+Digest: sha256:9c5e64d867035cd2b08dbc4a537dbd638c8d761be627c85a00e585309489d6e6
+Status: Downloaded newer image for node:12
+ ---> 9756a2cb8e53
+Step 2/7 : WORKDIR /usr/src/app/user
+ ---> Running in e8f981354622
+Removing intermediate container e8f981354622
+ ---> df76638a0a8c
+Step 3/7 : COPY package*.json ./
+ ---> eb5786d426ee
+Step 4/7 : RUN npm install
+ ---> Running in c806cd1b64f2
+> bcrypt@3.0.6 install /usr/src/app/user/node_modules/bcrypt
+> node-pre-gyp install --fallback-to-build
+node-pre-gyp WARN Using needle for node-pre-gyp https download 
+node-pre-gyp WARN Tried to download(404): https://github.com/kelektiv/node.bcrypt.js/releases/download/v3.0.6/bcrypt_lib-v3.0.6-node-v72-linux-x64-glibc.tar.gz 
+node-pre-gyp WARN Pre-built binaries not found for bcrypt@3.0.6 and node@12.20.1 (node-v72 ABI, glibc) (falling back to source compile with node-gyp) 
+make: Entering directory '/usr/src/app/user/node_modules/bcrypt/build'
+  CXX(target) Release/obj.target/bcrypt_lib/src/blowfish.o
+  CXX(target) Release/obj.target/bcrypt_lib/src/bcrypt.o
+  CXX(target) Release/obj.target/bcrypt_lib/src/bcrypt_node.o
+  SOLINK_MODULE(target) Release/obj.target/bcrypt_lib.node
+  COPY Release/bcrypt_lib.node
+  COPY /usr/src/app/user/node_modules/bcrypt/lib/binding/bcrypt_lib.node
+  TOUCH Release/obj.target/action_after_build.stamp
+make: Leaving directory '/usr/src/app/user/node_modules/bcrypt/build'
+npm WARN udagram-api@2.0.0 No description
+npm WARN udagram-api@2.0.0 No repository field.
+added 511 packages from 965 contributors and audited 515 packages in 11.965s
+6 packages are looking for funding
+  run `npm fund` for details
+found 24 vulnerabilities (22 low, 2 moderate)
+  run `npm audit fix` to fix them, or `npm audit` for details
+Removing intermediate container c806cd1b64f2
+ ---> 17dabefcf818
+Step 5/7 : COPY . .
+ ---> 00ca1e58bef0
+Step 6/7 : EXPOSE 8080
+ ---> Running in 45233ded4c01
+Removing intermediate container 45233ded4c01
+ ---> fb771967045f
+Step 7/7 : CMD [ "npm", "run", "prod" ]
+ ---> Running in a605ef5177a8
+Removing intermediate container a605ef5177a8
+ ---> 8c1377293d71
+Successfully built 8c1377293d71
+Successfully tagged udagram-user:latest
+The command "docker build ./user -t udagram-user -f user/Dockerfile" exited with 0.
+0.07s$ docker tag udagram-user [secure]/udagram-user:latest
+The command "docker tag udagram-user [secure]/udagram-user:latest" exited with 0.
+0.06s$ docker --version
+Docker version 18.06.0-ce, build 0ffa825
+The command "docker --version" exited with 0.
+545.86s$ docker build ./udagram-frontend -t udagram-front -f udagram-frontend/Dockerfile
+Sending build context to Docker daemon  649.7kB
+Step 1/8 : FROM beevelop/ionic AS ionic
+latest: Pulling from beevelop/ionic
+5bed26d33875: Pulling fs layer
+f11b29a9c730: Pulling fs layer
+930bda195c84: Pulling fs layer
+78bf9a5ad49e: Pulling fs layer
+cc06ee62f09a: Pulling fs layer
+2551fa227ba6: Pulling fs layer
+533c27c21c48: Pulling fs layer
+32dd416996d0: Pulling fs layer
+7a3a5e4a260a: Pulling fs layer
+69fb691a4dee: Pulling fs layer
+bc5d390e9316: Pulling fs layer
+fcbc15807e94: Pulling fs layer
+8332be09ac5a: Pulling fs layer
+6f6024ee6427: Pulling fs layer
+7789baf1a819: Pulling fs layer
+2ccabcb6b037: Pulling fs layer
+78bf9a5ad49e: Waiting
+cc06ee62f09a: Waiting
+2551fa227ba6: Waiting
+533c27c21c48: Waiting
+32dd416996d0: Waiting
+7a3a5e4a260a: Waiting
+69fb691a4dee: Waiting
+bc5d390e9316: Waiting
+fcbc15807e94: Waiting
+8332be09ac5a: Waiting
+6f6024ee6427: Waiting
+7789baf1a819: Waiting
+2ccabcb6b037: Waiting
+f11b29a9c730: Download complete
+930bda195c84: Verifying Checksum
+930bda195c84: Download complete
+78bf9a5ad49e: Verifying Checksum
+78bf9a5ad49e: Download complete
+5bed26d33875: Verifying Checksum
+5bed26d33875: Download complete
+533c27c21c48: Verifying Checksum
+533c27c21c48: Download complete
+cc06ee62f09a: Verifying Checksum
+cc06ee62f09a: Download complete
+2551fa227ba6: Verifying Checksum
+2551fa227ba6: Download complete
+5bed26d33875: Pull complete
+f11b29a9c730: Pull complete
+930bda195c84: Pull complete
+78bf9a5ad49e: Pull complete
+69fb691a4dee: Verifying Checksum
+69fb691a4dee: Download complete
+7a3a5e4a260a: Verifying Checksum
+7a3a5e4a260a: Download complete
+fcbc15807e94: Verifying Checksum
+fcbc15807e94: Download complete
+8332be09ac5a: Verifying Checksum
+8332be09ac5a: Download complete
+6f6024ee6427: Verifying Checksum
+6f6024ee6427: Download complete
+7789baf1a819: Verifying Checksum
+7789baf1a819: Download complete
+2ccabcb6b037: Verifying Checksum
+2ccabcb6b037: Download complete
+cc06ee62f09a: Pull complete
+32dd416996d0: Verifying Checksum
+32dd416996d0: Download complete
+2551fa227ba6: Pull complete
+bc5d390e9316: Verifying Checksum
+bc5d390e9316: Download complete
+533c27c21c48: Pull complete
+32dd416996d0: Pull complete
+7a3a5e4a260a: Pull complete
+69fb691a4dee: Pull complete
+bc5d390e9316: Pull complete
+fcbc15807e94: Pull complete
+8332be09ac5a: Pull complete
+6f6024ee6427: Pull complete
+7789baf1a819: Pull complete
+2ccabcb6b037: Pull complete
+Digest: sha256:5217f4b2492d0b8044f44da69fac0f9a375d8c3dc5bb5affc6243133aeafbf10
+Status: Downloaded newer image for beevelop/ionic:latest
+ ---> 3f7405e00db7
+Step 2/8 : WORKDIR /usr/src/app
+ ---> Running in 51fd80230670
+Removing intermediate container 51fd80230670
+ ---> 949e3c4479a0
+Step 3/8 : COPY package*.json ./
+ ---> 0c0535e23aa0
+Step 4/8 : RUN npm install
+ ---> Running in 284158e68f5b
+> core-js@3.6.4 postinstall /usr/src/app/node_modules/@angular-devkit/build-angular/node_modules/core-js
+> node -e "try{require('./postinstall')}catch(e){}"
+Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+The project needs your help! Please consider supporting of core-js on Open Collective or Patreon: 
+> https://opencollective.com/core-js 
+> https://www.patreon.com/zloirock 
+Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
+> core-js@2.6.9 postinstall /usr/src/app/node_modules/core-js
+> node scripts/postinstall || echo "ignore"
+Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+The project needs your help! Please consider supporting of core-js on Open Collective or Patreon: 
+> https://opencollective.com/core-js 
+> https://www.patreon.com/zloirock 
+Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
+> @angular/cli@8.3.25 postinstall /usr/src/app/node_modules/@angular/cli
+> node ./bin/postinstall/script.js
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.9 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.9: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+added 1366 packages from 1049 contributors and audited 1437 packages in 31.601s
+29 packages are looking for funding
+  run `npm fund` for details
+found 1405 vulnerabilities (1396 low, 1 moderate, 8 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
+Removing intermediate container 284158e68f5b
+ ---> b598203f4423
+Step 5/8 : COPY . .
+ ---> 2557248ce7a4
+Step 6/8 : RUN ionic build
+ ---> Running in 6891485348de
+> ng run app:build
+chunk {0} 0.js, 0.js.map () 16.4 kB  [rendered]
+chunk {1} 1.js, 1.js.map () 17.3 kB  [rendered]
+chunk {2} 2.js, 2.js.map () 31.4 kB  [rendered]
+chunk {3} 3.js, 3.js.map () 33 kB  [rendered]
+chunk {4} 4.js, 4.js.map () 25.7 kB  [rendered]
+chunk {5} 5.js, 5.js.map () 26.6 kB  [rendered]
+chunk {6} 6.js, 6.js.map () 24.7 kB  [rendered]
+chunk {7} 7.js, 7.js.map () 26.1 kB  [rendered]
+chunk {8} 8.js, 8.js.map () 23.9 kB  [rendered]
+chunk {9} 9.js, 9.js.map () 23.9 kB  [rendered]
+chunk {10} 10.js, 10.js.map () 32.5 kB  [rendered]
+chunk {11} 11.js, 11.js.map () 33.6 kB  [rendered]
+chunk {12} 12.js, 12.js.map () 33.7 kB  [rendered]
+chunk {13} 13.js, 13.js.map () 34.2 kB  [rendered]
+chunk {14} 14.js, 14.js.map () 30.1 kB  [rendered]
+chunk {15} 15.js, 15.js.map () 31.1 kB  [rendered]
+chunk {16} 16.js, 16.js.map () 31.5 kB  [rendered]
+chunk {17} 17.js, 17.js.map () 32 kB  [rendered]
+chunk {18} 18.js, 18.js.map () 30.4 kB  [rendered]
+chunk {19} 19.js, 19.js.map () 30.4 kB  [rendered]
+chunk {20} 20.js, 20.js.map () 23.6 kB  [rendered]
+chunk {21} 21.js, 21.js.map () 24.4 kB  [rendered]
+chunk {22} 22.js, 22.js.map () 23.4 kB  [rendered]
+chunk {23} 23.js, 23.js.map () 24.2 kB  [rendered]
+chunk {24} 24.js, 24.js.map () 25.5 kB  [rendered]
+chunk {25} 25.js, 25.js.map () 25.6 kB  [rendered]
+chunk {26} 26.js, 26.js.map () 25.6 kB  [rendered]
+chunk {27} 27.js, 27.js.map () 25.7 kB  [rendered]
+chunk {28} 28.js, 28.js.map () 23.9 kB  [rendered]
+chunk {29} 29.js, 29.js.map () 23.9 kB  [rendered]
+chunk {30} 30.js, 30.js.map () 42.4 kB  [rendered]
+chunk {31} 31.js, 31.js.map () 43.2 kB  [rendered]
+chunk {32} 32.js, 32.js.map () 21.3 kB  [rendered]
+chunk {33} 33.js, 33.js.map () 21.9 kB  [rendered]
+chunk {34} 34.js, 34.js.map () 25.7 kB  [rendered]
+chunk {35} 35.js, 35.js.map () 26.6 kB  [rendered]
+chunk {36} 36.js, 36.js.map () 33.6 kB  [rendered]
+chunk {37} 37.js, 37.js.map () 34 kB  [rendered]
+chunk {38} 38.js, 38.js.map () 32.8 kB  [rendered]
+chunk {39} 39.js, 39.js.map () 32.8 kB  [rendered]
+chunk {40} 40.js, 40.js.map () 21.4 kB  [rendered]
+chunk {41} 41.js, 41.js.map () 22 kB  [rendered]
+chunk {42} 42.js, 42.js.map () 31.6 kB  [rendered]
+chunk {43} 43.js, 43.js.map () 32.1 kB  [rendered]
+chunk {44} 44.js, 44.js.map () 32.4 kB  [rendered]
+chunk {45} 45.js, 45.js.map () 33.5 kB  [rendered]
+chunk {46} 46.js, 46.js.map () 42.5 kB  [rendered]
+chunk {47} 47.js, 47.js.map () 43.3 kB  [rendered]
+chunk {48} 48.js, 48.js.map () 24.1 kB  [rendered]
+chunk {49} 49.js, 49.js.map () 25 kB  [rendered]
+chunk {50} 50.js, 50.js.map () 33.5 kB  [rendered]
+chunk {51} 51.js, 51.js.map () 33.5 kB  [rendered]
+chunk {52} 52.js, 52.js.map () 22.8 kB  [rendered]
+chunk {53} 53.js, 53.js.map () 22.8 kB  [rendered]
+chunk {54} 54.js, 54.js.map () 46.5 kB  [rendered]
+chunk {55} 55.js, 55.js.map () 46.6 kB  [rendered]
+chunk {56} 56.js, 56.js.map () 15.9 kB  [rendered]
+chunk {57} 57.js, 57.js.map () 16.1 kB  [rendered]
+chunk {58} 58.js, 58.js.map () 22.8 kB  [rendered]
+chunk {59} 59.js, 59.js.map () 23.1 kB  [rendered]
+chunk {60} 60.js, 60.js.map () 22.4 kB  [rendered]
+chunk {61} 61.js, 61.js.map () 22.7 kB  [rendered]
+chunk {62} 62.js, 62.js.map () 25.4 kB  [rendered]
+chunk {63} 63.js, 63.js.map () 27.2 kB  [rendered]
+chunk {64} 64.js, 64.js.map () 25.8 kB  [rendered]
+chunk {65} 65.js, 65.js.map () 27.3 kB  [rendered]
+chunk {66} 66.js, 66.js.map () 16.6 kB  [rendered]
+chunk {67} 67.js, 67.js.map () 16.9 kB  [rendered]
+chunk {68} 68.js, 68.js.map () 16.6 kB  [rendered]
+chunk {69} 69.js, 69.js.map () 16.9 kB  [rendered]
+chunk {70} 70.js, 70.js.map () 16 kB  [rendered]
+chunk {71} 71.js, 71.js.map () 16.1 kB  [rendered]
+chunk {72} 72.js, 72.js.map () 17.6 kB  [rendered]
+chunk {73} 73.js, 73.js.map () 18 kB  [rendered]
+chunk {74} 74.js, 74.js.map () 24.9 kB  [rendered]
+chunk {75} 75.js, 75.js.map () 27.8 kB  [rendered]
+chunk {76} 76.js, 76.js.map () 26.9 kB  [rendered]
+chunk {77} 77.js, 77.js.map () 28.8 kB  [rendered]
+chunk {78} 78.js, 78.js.map () 25.2 kB  [rendered]
+chunk {79} 79.js, 79.js.map () 28 kB  [rendered]
+chunk {80} 80.js, 80.js.map () 22.2 kB  [rendered]
+chunk {81} 81.js, 81.js.map () 22.3 kB  [rendered]
+chunk {82} 82.js, 82.js.map () 49.9 kB  [rendered]
+chunk {83} 83.js, 83.js.map () 52.4 kB  [rendered]
+chunk {84} 84.js, 84.js.map () 46.3 kB  [rendered]
+chunk {85} 85.js, 85.js.map () 48.4 kB  [rendered]
+chunk {86} 86.js, 86.js.map () 12.9 kB  [rendered]
+chunk {87} 87.js, 87.js.map () 13 kB  [rendered]
+chunk {88} 88.js, 88.js.map () 26.6 kB  [rendered]
+chunk {89} 89.js, 89.js.map () 28.2 kB  [rendered]
+chunk {90} 90.js, 90.js.map () 46.5 kB  [rendered]
+chunk {91} 91.js, 91.js.map () 46.6 kB  [rendered]
+chunk {92} 92.js, 92.js.map () 30 kB  [rendered]
+chunk {93} 93.js, 93.js.map () 30 kB  [rendered]
+chunk {94} 94.js, 94.js.map () 16.6 kB  [rendered]
+chunk {95} 95.js, 95.js.map () 16.6 kB  [rendered]
+chunk {96} 96.js, 96.js.map () 6.43 kB  [rendered]
+chunk {97} 97.js, 97.js.map () 6.5 kB  [rendered]
+chunk {98} 98.js, 98.js.map () 17.6 kB  [rendered]
+chunk {99} 99.js, 99.js.map () 17.6 kB  [rendered]
+chunk {100} 100.js, 100.js.map () 6.43 kB  [rendered]
+chunk {101} 101.js, 101.js.map () 6.51 kB  [rendered]
+chunk {102} 102.js, 102.js.map () 44.1 kB  [rendered]
+chunk {103} 103.js, 103.js.map () 44.5 kB  [rendered]
+chunk {104} 104.js, 104.js.map () 44.4 kB  [rendered]
+chunk {105} 105.js, 105.js.map () 44.9 kB  [rendered]
+chunk {106} 106.js, 106.js.map () 19.8 kB  [rendered]
+chunk {107} 107.js, 107.js.map () 19.8 kB  [rendered]
+chunk {108} 108.js, 108.js.map () 16.6 kB  [rendered]
+chunk {109} 109.js, 109.js.map () 16.6 kB  [rendered]
+chunk {110} 110.js, 110.js.map () 19.4 kB  [rendered]
+chunk {111} 111.js, 111.js.map () 19.5 kB  [rendered]
+chunk {112} 112.js, 112.js.map () 17.6 kB  [rendered]
+chunk {113} 113.js, 113.js.map () 17.6 kB  [rendered]
+chunk {114} 114.js, 114.js.map () 17.8 kB  [rendered]
+chunk {115} 115.js, 115.js.map () 17.9 kB  [rendered]
+chunk {116} 116.js, 116.js.map () 13.7 kB  [rendered]
+chunk {117} 117.js, 117.js.map () 13.8 kB  [rendered]
+chunk {118} 118.js, 118.js.map () 19.4 kB  [rendered]
+chunk {119} 119.js, 119.js.map () 19.4 kB  [rendered]
+chunk {120} 120.js, 120.js.map () 10.4 kB  [rendered]
+chunk {121} 121.js, 121.js.map () 10.4 kB  [rendered]
+chunk {122} 122.js, 122.js.map () 27.5 kB  [rendered]
+chunk {123} 123.js, 123.js.map () 28.3 kB  [rendered]
+chunk {124} 124.js, 124.js.map () 10.8 kB  [rendered]
+chunk {125} 125.js, 125.js.map () 10.8 kB  [rendered]
+chunk {126} 126.js, 126.js.map () 17.3 kB  [rendered]
+chunk {127} 127.js, 127.js.map () 17.3 kB  [rendered]
+chunk {128} 128.js, 128.js.map () 24.5 kB  [rendered]
+chunk {129} 129.js, 129.js.map () 24.5 kB  [rendered]
+chunk {130} 130.js, 130.js.map () 2.83 kB  [rendered]
+chunk {131} 131.js, 131.js.map () 2.88 kB  [rendered]
+chunk {132} 132.js, 132.js.map () 4.43 kB  [rendered]
+chunk {133} 133.js, 133.js.map () 4.45 kB  [rendered]
+chunk {134} 134.js, 134.js.map () 10.7 kB  [rendered]
+chunk {135} 135.js, 135.js.map () 10.8 kB  [rendered]
+chunk {136} 136.js, 136.js.map () 4.44 kB  [rendered]
+chunk {137} 137.js, 137.js.map () 4.45 kB  [rendered]
+chunk {138} 138.js, 138.js.map () 10.1 kB  [rendered]
+chunk {139} 139.js, 139.js.map () 10.2 kB  [rendered]
+chunk {140} 140.js, 140.js.map () 13 kB  [rendered]
+chunk {141} 141.js, 141.js.map () 13 kB  [rendered]
+chunk {142} 142.js, 142.js.map () 27.8 kB  [rendered]
+chunk {143} 143.js, 143.js.map () 28.6 kB  [rendered]
+chunk {144} 144.js, 144.js.map () 14.3 kB  [rendered]
+chunk {145} 145.js, 145.js.map () 14.5 kB  [rendered]
+chunk {146} 146.js, 146.js.map () 14.4 kB  [rendered]
+chunk {147} 147.js, 147.js.map () 15.1 kB  [rendered]
+chunk {148} 148.js, 148.js.map () 14.4 kB  [rendered]
+chunk {149} 149.js, 149.js.map () 14.4 kB  [rendered]
+chunk {150} 150.js, 150.js.map () 24.4 kB  [rendered]
+chunk {151} 151.js, 151.js.map () 24.5 kB  [rendered]
+chunk {152} 152.js, 152.js.map () 15.1 kB  [rendered]
+chunk {153} 153.js, 153.js.map () 15.8 kB  [rendered]
+chunk {154} 154.js, 154.js.map () 13.6 kB  [rendered]
+chunk {155} 155.js, 155.js.map () 13.6 kB  [rendered]
+chunk {chunk-172145ad-js} chunk-172145ad-js.js, chunk-172145ad-js.js.map (chunk-172145ad-js) 5.52 kB  [rendered]
+chunk {chunk-1d62a940-js} chunk-1d62a940-js.js, chunk-1d62a940-js.js.map (chunk-1d62a940-js) 12.9 kB  [rendered]
+chunk {chunk-267dafff-js} chunk-267dafff-js.js, chunk-267dafff-js.js.map (chunk-267dafff-js) 1.43 kB  [rendered]
+chunk {chunk-2a112823-js} chunk-2a112823-js.js, chunk-2a112823-js.js.map (chunk-2a112823-js) 1.49 kB  [rendered]
+chunk {chunk-4513ec06-js} chunk-4513ec06-js.js, chunk-4513ec06-js.js.map (chunk-4513ec06-js) 3.25 kB  [rendered]
+chunk {chunk-75ece731-js} chunk-75ece731-js.js, chunk-75ece731-js.js.map (chunk-75ece731-js) 1.01 kB  [rendered]
+chunk {chunk-8cdfc1ff-js} chunk-8cdfc1ff-js.js, chunk-8cdfc1ff-js.js.map (chunk-8cdfc1ff-js) 4.27 kB  [rendered]
+chunk {chunk-f2d9e763-js} chunk-f2d9e763-js.js, chunk-f2d9e763-js.js.map (chunk-f2d9e763-js) 1.63 kB  [rendered]
+chunk {chunk-f5118fa0-js} chunk-f5118fa0-js.js, chunk-f5118fa0-js.js.map (chunk-f5118fa0-js) 1.77 kB  [rendered]
+chunk {chunk-f9db771e-js} chunk-f9db771e-js.js, chunk-f9db771e-js.js.map (chunk-f9db771e-js) 93.8 kB  [rendered]
+chunk {common} common.js, common.js.map (common) 20.3 kB  [rendered]
+chunk {home-home-module} home-home-module.js, home-home-module.js.map (home-home-module) 35.8 kB  [rendered]
+chunk {main} main.js, main.js.map (main) 88.8 kB [initial] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 314 kB [initial] [rendered]
+chunk {polyfills-array-js} polyfills-array-js.js, polyfills-array-js.js.map (polyfills-array-js) 3.11 kB  [rendered]
+chunk {polyfills-css-shim-js} polyfills-css-shim-js.js, polyfills-css-shim-js.js.map (polyfills-css-shim-js) 12.1 kB  [rendered]
+chunk {polyfills-dom-js} polyfills-dom-js.js, polyfills-dom-js.js.map (polyfills-dom-js) 14.6 kB  [rendered]
+chunk {polyfills-es5} polyfills-es5.js, polyfills-es5.js.map (polyfills-es5) 715 kB [initial] [rendered]
+chunk {polyfills-fetch-js} polyfills-fetch-js.js, polyfills-fetch-js.js.map (polyfills-fetch-js) 7.95 kB  [rendered]
+chunk {polyfills-object-js} polyfills-object-js.js, polyfills-object-js.js.map (polyfills-object-js) 1.66 kB  [rendered]
+chunk {polyfills-string-js} polyfills-string-js.js, polyfills-string-js.js.map (polyfills-string-js) 1.39 kB  [rendered]
+chunk {polyfills-url-js} polyfills-url-js.js, polyfills-url-js.js.map (polyfills-url-js) 5.05 kB  [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 9.7 kB [entry] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 83.5 kB [initial] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 4.49 MB [initial] [rendered]
+Date: 2021-01-15T22:23:06.858Z - Hash: c1689405b94be847a8c0 - Time: 11433ms
+Removing intermediate container 6891485348de
+ ---> 62b5e98f8e87
+Step 7/8 : FROM nginx:alpine
+alpine: Pulling from library/nginx
+801bfaa63ef2: Pulling fs layer
+b1242e25d284: Pulling fs layer
+7453d3e6b909: Pulling fs layer
+07ce7418c4f8: Pulling fs layer
+e295e0624aa3: Pulling fs layer
+07ce7418c4f8: Waiting
+e295e0624aa3: Waiting
+801bfaa63ef2: Retrying in 5 seconds
+7453d3e6b909: Verifying Checksum
+7453d3e6b909: Download complete
+07ce7418c4f8: Download complete
+e295e0624aa3: Verifying Checksum
+e295e0624aa3: Download complete
+b1242e25d284: Verifying Checksum
+b1242e25d284: Download complete
+801bfaa63ef2: Retrying in 4 seconds
+801bfaa63ef2: Retrying in 3 seconds
+801bfaa63ef2: Retrying in 2 seconds
+801bfaa63ef2: Retrying in 1 second
+801bfaa63ef2: Retrying in 10 seconds
+801bfaa63ef2: Retrying in 9 seconds
+801bfaa63ef2: Retrying in 8 seconds
+801bfaa63ef2: Retrying in 7 seconds
+801bfaa63ef2: Retrying in 6 seconds
+801bfaa63ef2: Retrying in 5 seconds
+801bfaa63ef2: Retrying in 4 seconds
+801bfaa63ef2: Retrying in 3 seconds
+801bfaa63ef2: Retrying in 2 seconds
+801bfaa63ef2: Retrying in 1 second
+801bfaa63ef2: Retrying in 15 seconds
+801bfaa63ef2: Retrying in 14 seconds
+801bfaa63ef2: Retrying in 13 seconds
+801bfaa63ef2: Retrying in 12 seconds
+801bfaa63ef2: Retrying in 11 seconds
+801bfaa63ef2: Retrying in 10 seconds
+801bfaa63ef2: Retrying in 9 seconds
+801bfaa63ef2: Retrying in 8 seconds
+801bfaa63ef2: Retrying in 7 seconds
+801bfaa63ef2: Retrying in 6 seconds
+801bfaa63ef2: Retrying in 5 seconds
+801bfaa63ef2: Retrying in 4 seconds
+801bfaa63ef2: Retrying in 3 seconds
+801bfaa63ef2: Retrying in 2 seconds
+801bfaa63ef2: Retrying in 1 second
+801bfaa63ef2: Retrying in 20 seconds
+801bfaa63ef2: Retrying in 19 seconds
+801bfaa63ef2: Retrying in 18 seconds
+801bfaa63ef2: Retrying in 17 seconds
+801bfaa63ef2: Retrying in 16 seconds
+801bfaa63ef2: Retrying in 15 seconds
+801bfaa63ef2: Retrying in 14 seconds
+801bfaa63ef2: Retrying in 13 seconds
+801bfaa63ef2: Retrying in 12 seconds
+801bfaa63ef2: Retrying in 11 seconds
+801bfaa63ef2: Retrying in 10 seconds
+801bfaa63ef2: Retrying in 9 seconds
+801bfaa63ef2: Retrying in 8 seconds
+801bfaa63ef2: Retrying in 7 seconds
+801bfaa63ef2: Retrying in 6 seconds
+801bfaa63ef2: Retrying in 5 seconds
+801bfaa63ef2: Retrying in 4 seconds
+801bfaa63ef2: Retrying in 3 seconds
+801bfaa63ef2: Retrying in 2 seconds
+801bfaa63ef2: Retrying in 1 second
+alpine: Pulling from library/nginx
+801bfaa63ef2: Pulling fs layer
+b1242e25d284: Pulling fs layer
+7453d3e6b909: Pulling fs layer
+07ce7418c4f8: Pulling fs layer
+e295e0624aa3: Pulling fs layer
+07ce7418c4f8: Waiting
+e295e0624aa3: Waiting
+7453d3e6b909: Verifying Checksum
+7453d3e6b909: Download complete
+b1242e25d284: Download complete
+801bfaa63ef2: Verifying Checksum
+801bfaa63ef2: Download complete
+07ce7418c4f8: Verifying Checksum
+07ce7418c4f8: Download complete
+e295e0624aa3: Download complete
+801bfaa63ef2: Pull complete
+b1242e25d284: Pull complete
+7453d3e6b909: Pull complete
+07ce7418c4f8: Pull complete
+e295e0624aa3: Pull complete
+Digest: sha256:c2ce58e024275728b00a554ac25628af25c54782865b3487b11c21cafb7fabda
+Status: Downloaded newer image for nginx:alpine
+ ---> 629df02b47c8
+Step 8/8 : COPY --from=ionic  /usr/src/app/www /usr/share/nginx/html
+ ---> 0bbc28570e75
+Successfully built 0bbc28570e75
+Successfully tagged udagram-front:latest
+The command "docker build ./udagram-frontend -t udagram-front -f udagram-frontend/Dockerfile" exited with 0.
+0.07s$ docker tag udagram-front [secure]/udagram-front:latest
+The command "docker tag udagram-front [secure]/udagram-front:latest" exited with 0.
+0.06s$ docker --version
+Docker version 18.06.0-ce, build 0ffa825
+The command "docker --version" exited with 0.
+0.30s$ docker build ./reverse -t udagram-reverse-proxy -f reverse/Dockerfile
+Sending build context to Docker daemon  6.656kB
+Step 1/2 : FROM nginx:alpine
+ ---> 629df02b47c8
+Step 2/2 : COPY nginx.conf /etc/nginx/nginx.conf
+ ---> 7b2d5e4698dc
+Successfully built 7b2d5e4698dc
+Successfully tagged udagram-reverse-proxy:latest
+The command "docker build ./reverse -t udagram-reverse-proxy -f reverse/Dockerfile" exited with 0.
+0.07s$ docker tag udagram-reverse-proxy [secure]/udagram-reverse-proxy:latest
+The command "docker tag udagram-reverse-proxy [secure]/udagram-reverse-proxy:latest" exited with 0.
+0.06s$ docker --version
+Docker version 18.06.0-ce, build 0ffa825
+The command "docker --version" exited with 0.
+22.26s$ docker build ./feed -t udagram-feed -f feed/Dockerfile
+Sending build context to Docker daemon  6.158MB
+Step 1/7 : FROM node:12
+ ---> 9756a2cb8e53
+Step 2/7 : WORKDIR /usr/src/app/feed
+ ---> Running in 5b5b1698dd69
+Removing intermediate container 5b5b1698dd69
+ ---> 07dfc27cfebc
+Step 3/7 : COPY package*.json ./
+ ---> 1d29403ddefc
+Step 4/7 : RUN npm install
+ ---> Running in c0f41f9c665e
+> bcrypt@3.0.6 install /usr/src/app/feed/node_modules/bcrypt
+> node-pre-gyp install --fallback-to-build
+node-pre-gyp WARN Using needle for node-pre-gyp https download 
+node-pre-gyp WARN Tried to download(404): https://github.com/kelektiv/node.bcrypt.js/releases/download/v3.0.6/bcrypt_lib-v3.0.6-node-v72-linux-x64-glibc.tar.gz 
+node-pre-gyp WARN Pre-built binaries not found for bcrypt@3.0.6 and node@12.20.1 (node-v72 ABI, glibc) (falling back to source compile with node-gyp) 
+make: Entering directory '/usr/src/app/feed/node_modules/bcrypt/build'
+  CXX(target) Release/obj.target/bcrypt_lib/src/blowfish.o
+  CXX(target) Release/obj.target/bcrypt_lib/src/bcrypt.o
+  CXX(target) Release/obj.target/bcrypt_lib/src/bcrypt_node.o
+  SOLINK_MODULE(target) Release/obj.target/bcrypt_lib.node
+  COPY Release/bcrypt_lib.node
+  COPY /usr/src/app/feed/node_modules/bcrypt/lib/binding/bcrypt_lib.node
+  TOUCH Release/obj.target/action_after_build.stamp
+make: Leaving directory '/usr/src/app/feed/node_modules/bcrypt/build'
+npm WARN udagram-api@2.0.0 No description
+npm WARN udagram-api@2.0.0 No repository field.
+added 511 packages from 965 contributors and audited 515 packages in 13.042s
+6 packages are looking for funding
+  run `npm fund` for details
+found 24 vulnerabilities (22 low, 2 moderate)
+  run `npm audit fix` to fix them, or `npm audit` for details
+Removing intermediate container c0f41f9c665e
+ ---> 495248241264
+Step 5/7 : COPY . .
+ ---> 5f703ef72ab2
+Step 6/7 : EXPOSE 8080
+ ---> Running in 2eb510b7d0d7
+Removing intermediate container 2eb510b7d0d7
+ ---> 6162f3a495b6
+Step 7/7 : CMD [ "npm", "run", "prod" ]
+ ---> Running in 3d76171ef91c
+Removing intermediate container 3d76171ef91c
+ ---> 1d63b5e49f59
+Successfully built 1d63b5e49f59
+Successfully tagged udagram-feed:latest
+The command "docker build ./feed -t udagram-feed -f feed/Dockerfile" exited with 0.
+0.07s$ docker tag udagram-feed [secure]/udagram-feed:latest
+The command "docker tag udagram-feed [secure]/udagram-feed:latest" exited with 0.
+0.00s$ echo "testing build"
+testing build
+The command "echo "testing build"" exited with 0.
+after_success.1
+0.52s$ echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+after_success.2
+17.62s$ docker push [secure]/udagram-user:latest
+after_success.3
+0.51s$ echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+after_success.4
+7.71s$ docker push [secure]/udagram-front:latest
+after_success.5
+0.50s$ echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+after_success.6
+7.55s$ docker push [secure]/udagram-reverse-proxy:latest
+after_success.7
+0.53s$ echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+after_success.8
+19.14s$ docker push [secure]/udagram-feed:latest
+Done. Your build exited with 0.

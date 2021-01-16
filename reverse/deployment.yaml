@@ -1,14 +1,18 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     service: reverseproxy
   name: reverseproxy
 spec:
-  replicas: 1
+  replicas: 2
+  selector:
+    matchLabels:
+      app: reverseproxy
   template:
     metadata:
       labels:
+        app: reverseproxy
         service: reverseproxy
     spec:
       containers:
@@ -21,7 +25,7 @@ spec:
             cpu: "250m"
           limits:
             memory: "1024Mi"
-            cpu: "500m"       
+            cpu: "500m"
         ports:
         - containerPort: 8080
       restartPolicy: Always

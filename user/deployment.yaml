@@ -5,7 +5,7 @@ metadata:
     service: udagram-user
   name: udagram-user
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       service: udagram-user
@@ -21,61 +21,56 @@ spec:
         env:
           - name: POSTGRES_USERNAME
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: POSTGRES_USERNAME
-                name: udagram-secret
+                name: env-config
           - name: POSTGRES_PASSWORD
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: POSTGRES_PASSWORD
-                name: udagram-secret          
+                name: env-config          
           - name: POSTGRES_DB
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: POSTGRES_DB
-                name: udagram-secret  
+                name: env-config  
           - name: POSTGRES_HOST
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: POSTGRES_HOST
-                name: udagram-secret
+                name: env-config
           - name: AWS_REGION
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: AWS_REGION
-                name: udagram-secret
+                name: env-config
           - name: AWS_PROFILE
             valueFrom:
-                secretKeyRef:
+                configMapKeyRef:
                   key: AWS_PROFILE
-                  name: udagram-secret
+                  name: env-config
           - name: AWS_BUCKET
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: AWS_BUCKET
-                name: udagram-secret
+                name: env-config
           - name: JWT_SECRET
             valueFrom:
-                secretKeyRef:
+                configMapKeyRef:
                   key: JWT_SECRET
-                  name: udagram-secret
+                  name: env-config
           - name: URL
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: URL
-                name: udagram-secret
-          - name: PORT
-            valueFrom:
-              secretKeyRef:
-                key: PORT
-                name: udagram-secret       
+                name: env-config    
         resources:
           requests:
-            memory: "256Mi"
+            memory: "64Mi"
             cpu: "250m"
           limits:
-            memory: "256Mi"
-            cpu: "250m"       
+            memory: "1024Mi"
+            cpu: "500m"       
         ports:
         - containerPort: 8080
       restartPolicy: Always
